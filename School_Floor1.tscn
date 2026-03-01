@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dxi3do7ey367y"]
+
+[ext_resource type="ArrayMesh" uid="uid://dltbs1sb3hkb4" path="res://SOD_3DScenePlayerModel.obj" id="1_xwyku"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xwyku"]
+size = Vector3(2.465454, 6.655258, 1.3825684)
+
+[node name="SchoolFloor1" type="Node3D" unique_id=1759764683]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=163378110]
+mesh = ExtResource("1_xwyku")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="MeshInstance3D" unique_id=924707296]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/CharacterBody3D" unique_id=1796912395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011047363, -0.0020065308, 0)
+shape = SubResource("BoxShape3D_xwyku")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=509661269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.778409, 0)

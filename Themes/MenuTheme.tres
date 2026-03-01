@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://b4o0oyy4npy16"]
+
+[ext_resource type="FontFile" uid="uid://1010cd6o8qhc" path="res://Fonts/DMSans-VariableFont_opsz,wght.ttf" id="1_bnqbk"]
+
+[resource]
+default_font = ExtResource("1_bnqbk")
+default_font_size = 24
