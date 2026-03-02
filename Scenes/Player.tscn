@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bqoonkhrg4wx1"]
+
+[ext_resource type="Script" uid="uid://bs6vnv7263l8u" path="res://Scripts/player.gd" id="1_rpqav"]
+[ext_resource type="Script" uid="uid://fetu5vdx164a" path="res://Scripts/Components/input_component.gd" id="2_gntrk"]
+[ext_resource type="Script" uid="uid://bdysibukkqc12" path="res://Scripts/Components/movement_component.gd" id="3_dewec"]
+[ext_resource type="Script" uid="uid://ck5shq0n77bkm" path="res://Scripts/Components/camera_component.gd" id="4_dewec"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qbkls"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rpqav"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=479895160 node_paths=PackedStringArray("input_component", "movement_component", "camera_component")]
+script = ExtResource("1_rpqav")
+input_component = NodePath("InputComponent")
+movement_component = NodePath("MovementComponent")
+camera_component = NodePath("CameraComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2076507509]
+shape = SubResource("CapsuleShape3D_qbkls")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=740440706]
+mesh = SubResource("CapsuleMesh_rpqav")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=544293145]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.44214708, 0)
+
+[node name="InputComponent" type="Node" parent="." unique_id=1400698911]
+script = ExtResource("2_gntrk")
+metadata/_custom_type_script = "uid://fetu5vdx164a"
+
+[node name="MovementComponent" type="Node" parent="." unique_id=520007101 node_paths=PackedStringArray("body", "camera")]
+script = ExtResource("3_dewec")
+body = NodePath("..")
+camera = NodePath("../Camera3D")
+metadata/_custom_type_script = "uid://bdysibukkqc12"
+
+[node name="CameraComponent" type="Node" parent="." unique_id=491806522 node_paths=PackedStringArray("camera")]
+script = ExtResource("4_dewec")
+camera = NodePath("../Camera3D")
+metadata/_custom_type_script = "uid://ck5shq0n77bkm"
