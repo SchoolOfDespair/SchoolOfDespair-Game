@@ -1,21 +1,24 @@
+## Component to handle moving [CharacterBody3D]
 class_name MovementComponent extends Node
 
 
+## [CharacterBody3D] to use
 @export var body: CharacterBody3D
+## [Camera3D] to use
 @export var camera: Camera3D
 
-@export var speed := 20.0
-@export var linear_damp := 0.95
+## Speed value
+@export var speed := 400.0
 
 
+## Call to move [member body] based on [param input] and [member speed] relative to [member camera]
 func move(delta: float, input: Vector2) -> void:
 	assert(body != null)
 	assert(camera != null)
 	
-	body.velocity *= linear_damp
 	
-	var left_movement = Vector3(camera.basis.x.x, 0, camera.basis.x.z).normalized() * input.x * speed * delta
-	var forward_movement = Vector3(camera.basis.z.x, 0, camera.basis.z.z).normalized() * input.y * speed * delta
-	body.velocity += left_movement + forward_movement
+	var left_direction = Vector3(camera.basis.x.x, 0, camera.basis.x.z).normalized() 
+	var forward_direction = Vector3(camera.basis.z.x, 0, camera.basis.z.z).normalized()
+	body.velocity = ((left_direction * input.x) + (forward_direction * input.y)) * speed * delta
 	
 	body.move_and_slide()

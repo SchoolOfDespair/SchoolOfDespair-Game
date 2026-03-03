@@ -15,6 +15,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	
 	input_component.gather()
-	movement_component.move(delta, input_component.wasd_input)
 	camera_component.rotate_view(delta, input_component.mouse_input)
+	movement_component.move(delta, input_component.wasd_input)
+
 	
