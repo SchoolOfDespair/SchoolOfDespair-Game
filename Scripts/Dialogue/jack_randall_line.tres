@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DialogueResource" format=3 uid="uid://utkp27o6trcr"]
+
+[ext_resource type="Script" uid="uid://bjixv6vk5ooqd" path="res://Scripts/Dialogue/dialogue_resource.gd" id="1_3c45f"]
+
+[resource]
+script = ExtResource("1_3c45f")
+character = "Randall Jackson"
+text = "Yo, I'm Randall Jackson. You can call me [color=gold][b]Randall[/b][/color]. I'm a [color=gold][b]Journalist[/b][/color]."
+emotion = "Neutral"
+metadata/_custom_type_script = "uid://bjixv6vk5ooqd"

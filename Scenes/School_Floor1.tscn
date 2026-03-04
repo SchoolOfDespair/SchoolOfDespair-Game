@@ -2,7 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bqoonkhrg4wx1" path="res://Scenes/Player.tscn" id="1_okssu"]
 [ext_resource type="Theme" uid="uid://b4o0oyy4npy16" path="res://Themes/MenuTheme.tres" id="2_shu46"]
-[ext_resource type="Script" uid="uid://b1hhqjjsomdxp" path="res://Scripts/Dialogue/dialogue_test.gd" id="3_ib3jx"]
+[ext_resource type="Script" uid="uid://vm22tpwsrknf" path="res://Scenes/my_dialogue_label.gd" id="3_n466d"]
+[ext_resource type="Resource" uid="uid://utkp27o6trcr" path="res://Scripts/Dialogue/jack_randall_line.tres" id="4_n466d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_okssu"]
 
@@ -52,7 +53,7 @@ offset_top = 282.70108
 offset_right = 831.7024
 offset_bottom = 432.70108
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/Panel" unique_id=1845705595 node_paths=PackedStringArray("RTL")]
+[node name="MyDialogueLabel" type="RichTextLabel" parent="Control/Panel" unique_id=417559510]
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 151.0
@@ -60,5 +61,8 @@ theme = ExtResource("2_shu46")
 bbcode_enabled = true
 text = "Look, [color=gold][b]there[/b][/color] are [i]words[/i]!"
 fit_content = true
-script = ExtResource("3_ib3jx")
-RTL = NodePath(".")
+script = ExtResource("3_n466d")
+dialogue_line = ExtResource("4_n466d")
+metadata/_custom_type_script = "uid://b1hhqjjsomdxp"
+
+[node name="Timer" type="Timer" parent="." unique_id=948149160]

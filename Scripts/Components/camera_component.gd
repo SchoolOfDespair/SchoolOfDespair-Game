@@ -10,8 +10,6 @@ class_name CameraComponent extends Node
 
 ## Rotates [member camera] relative to [param mouse_look]
 func rotate_view(delta: float, mouse_look: Vector2) -> void:
-	assert(camera != null)
 	
 	camera.rotation += Vector3(-mouse_look.y , -mouse_look.x, 0) * 0.1 * delta
-	camera.rotation += Vector3(-Input.get_axis("camup", "camdown"), -Input.get_axis("camleft", "camright"), 0) * 1.5 * delta
 	camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -pitch_clamp_degrees, pitch_clamp_degrees)
