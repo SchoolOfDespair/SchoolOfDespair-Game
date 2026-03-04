@@ -9,7 +9,7 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rpqav"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" unique_id=479895160 node_paths=PackedStringArray("input_component", "movement_component", "camera_component")]
+[node name="3DPlayer" type="CharacterBody3D" unique_id=479895160 node_paths=PackedStringArray("input_component", "movement_component", "camera_component")]
 script = ExtResource("1_rpqav")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementComponent")

@@ -33,6 +33,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	mouse_input = event.relative * mouse_sens
 	_mouse_input_got_this_frame = true
 
-## Retrive left right forward backward from input map and put in [member wasd_input]
+## Retrieve left right forward backward from input map and put in [member wasd_input]
 func gather() -> void:
 	wasd_input = Input.get_vector("left", "right", "forward", "backward")

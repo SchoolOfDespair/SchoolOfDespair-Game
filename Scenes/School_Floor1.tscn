@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dxi3do7ey367y"]
 
 [ext_resource type="PackedScene" uid="uid://bqoonkhrg4wx1" path="res://Scenes/Player.tscn" id="1_okssu"]
+[ext_resource type="Theme" uid="uid://b4o0oyy4npy16" path="res://Themes/MenuTheme.tres" id="2_shu46"]
+[ext_resource type="Script" uid="uid://b1hhqjjsomdxp" path="res://Scripts/Dialogue/dialogue_test.gd" id="3_ib3jx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_okssu"]
 
@@ -23,7 +25,7 @@ size = Vector2(20, 20)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=401900790]
 environment = SubResource("Environment_okssu")
 
-[node name="CharacterBody3D" parent="." unique_id=479895160 instance=ExtResource("1_okssu")]
+[node name="3DPlayer" parent="." unique_id=479895160 instance=ExtResource("1_okssu")]
 
 [node name="Flor" type="StaticBody3D" parent="." unique_id=1743321022]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6282635, 0)
@@ -34,3 +36,29 @@ mesh = SubResource("PlaneMesh_ib3jx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Flor" unique_id=1474751699]
 shape = SubResource("WorldBoundaryShape3D_n466d")
+
+[node name="Control" type="Control" parent="." unique_id=1216252003]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 322.29758
+offset_top = 212.29892
+offset_right = 362.29758
+offset_bottom = 252.29892
+
+[node name="Panel" type="Panel" parent="Control" unique_id=745142004]
+layout_mode = 0
+offset_left = -322.29758
+offset_top = 282.70108
+offset_right = 831.7024
+offset_bottom = 432.70108
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/Panel" unique_id=1845705595 node_paths=PackedStringArray("RTL")]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 151.0
+theme = ExtResource("2_shu46")
+bbcode_enabled = true
+text = "Look, [color=gold][b]there[/b][/color] are [i]words[/i]!"
+fit_content = true
+script = ExtResource("3_ib3jx")
+RTL = NodePath(".")
