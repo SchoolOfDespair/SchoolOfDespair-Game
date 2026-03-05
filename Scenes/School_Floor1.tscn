@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bqoonkhrg4wx1" path="res://Scenes/Player.tscn" id="1_okssu"]
 [ext_resource type="Theme" uid="uid://b4o0oyy4npy16" path="res://Themes/MenuTheme.tres" id="2_shu46"]
 [ext_resource type="Script" uid="uid://vm22tpwsrknf" path="res://Scenes/my_dialogue_label.gd" id="3_n466d"]
-[ext_resource type="Resource" uid="uid://utkp27o6trcr" path="res://Scripts/Dialogue/jack_randall_line.tres" id="4_n466d"]
+[ext_resource type="Resource" uid="uid://utkp27o6trcr" path="res://Scripts/Dialogue/randall_jackson_line.tres" id="4_n466d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_okssu"]
 

@@ -9,11 +9,11 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rpqav"]
 
-[node name="3DPlayer" type="CharacterBody3D" unique_id=479895160 node_paths=PackedStringArray("input_component", "movement_component", "camera_component")]
+[node name="3DPlayer" type="CharacterBody3D" unique_id=479895160 node_paths=PackedStringArray("input_component", "movement_component", "camera")]
 script = ExtResource("1_rpqav")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementComponent")
-camera_component = NodePath("CameraComponent")
+camera = NodePath("PlayerCam")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2076507509]
 shape = SubResource("CapsuleShape3D_qbkls")
@@ -21,20 +21,16 @@ shape = SubResource("CapsuleShape3D_qbkls")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=740440706]
 mesh = SubResource("CapsuleMesh_rpqav")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=544293145]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44214708, 0)
+[node name="PlayerCam" type="Camera3D" parent="." unique_id=451546733]
+script = ExtResource("4_dewec")
+metadata/_custom_type_script = "uid://ck5shq0n77bkm"
 
 [node name="InputComponent" type="Node" parent="." unique_id=1400698911]
 script = ExtResource("2_gntrk")
 metadata/_custom_type_script = "uid://fetu5vdx164a"
 
-[node name="MovementComponent" type="Node" parent="." unique_id=520007101 node_paths=PackedStringArray("body", "camera")]
+[node name="MovementComponent" type="Node" parent="." unique_id=520007101 node_paths=PackedStringArray("body", "relative_to")]
 script = ExtResource("3_dewec")
 body = NodePath("..")
-camera = NodePath("../Camera3D")
+relative_to = NodePath("../PlayerCam")
 metadata/_custom_type_script = "uid://bdysibukkqc12"
-
-[node name="CameraComponent" type="Node" parent="." unique_id=491806522 node_paths=PackedStringArray("camera")]
-script = ExtResource("4_dewec")
-camera = NodePath("../Camera3D")
-metadata/_custom_type_script = "uid://ck5shq0n77bkm"
