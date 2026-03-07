@@ -2,8 +2,6 @@
 class_name InputComponent extends Node
 
 
-# TODO: Add deadzones?
-
 ## Type of device connected
 enum DEVICE {
 	M_AND_KBOARD,
@@ -13,6 +11,9 @@ var _current_device: DEVICE = DEVICE.M_AND_KBOARD
 
 
 const GAMEPAD_LOOK_MULTIPLIER: float = 20.0
+
+## Detecting controller deadzone
+@export var deadzone := 0.05
 
 ## Mouse sensitivity
 @export var look_sens := 2.0
@@ -61,8 +62,11 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey or event is InputEventMouseButton:
 		_current_device = DEVICE.M_AND_KBOARD
-	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+	elif event is InputEventJoypadButton:
 		_current_device = DEVICE.GAMEPAD
+	elif event is InputEventJoypadMotion:
+		if event.axis_value > deadzone:
+			_current_device = DEVICE.GAMEPAD
 	
 	
 	if event is not InputEventMouseMotion \
