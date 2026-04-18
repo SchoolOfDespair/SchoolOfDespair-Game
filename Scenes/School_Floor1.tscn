@@ -41,22 +41,29 @@ shape = SubResource("WorldBoundaryShape3D_n466d")
 [node name="Control" type="Control" parent="." unique_id=1216252003]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 322.29758
-offset_top = 212.29892
-offset_right = 362.29758
-offset_bottom = 252.29892
-
-[node name="Panel" type="Panel" parent="Control" unique_id=745142004]
-layout_mode = 0
-offset_left = -322.29758
-offset_top = 282.70108
-offset_right = 831.7024
-offset_bottom = 432.70108
-
-[node name="MyDialogueLabel" type="RichTextLabel" parent="Control/Panel" unique_id=417559510]
-layout_mode = 0
+offset_top = 497.0
 offset_right = 1152.0
-offset_bottom = 151.0
+offset_bottom = 646.0
+
+[node name="BoxContainer" type="BoxContainer" parent="Control" unique_id=120376701]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.092
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.03099823
+alignment = 1
+
+[node name="Panel" type="Panel" parent="Control/BoxContainer" unique_id=745142004]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MyDialogueLabel" type="RichTextLabel" parent="Control/BoxContainer/Panel" unique_id=417559510]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 1154.0
+offset_bottom = 123.99997
 theme = ExtResource("2_shu46")
 bbcode_enabled = true
 text = "Look, [color=gold][b]there[/b][/color] are [i]words[/i]!"
