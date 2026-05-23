@@ -4,16 +4,22 @@
 [ext_resource type="Script" uid="uid://fetu5vdx164a" path="res://Scripts/Components/input_component.gd" id="2_gntrk"]
 [ext_resource type="Script" uid="uid://bdysibukkqc12" path="res://Scripts/Components/movement_component.gd" id="3_dewec"]
 [ext_resource type="Script" uid="uid://ck5shq0n77bkm" path="res://Scripts/Components/camera_component.gd" id="4_dewec"]
+[ext_resource type="Script" uid="uid://bwtpaj1f1rmi5" path="res://Scripts/Components/interaction_manager_component.gd" id="5_5ixxa"]
+[ext_resource type="PackedScene" uid="uid://ct3tawfubo8of" path="res://Scenes/3d_explore_canvas_layer.tscn" id="6_nn08x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qbkls"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rpqav"]
 
-[node name="3DPlayer" type="CharacterBody3D" unique_id=479895160 node_paths=PackedStringArray("input_component", "movement_component", "camera")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_dewec"]
+size = Vector3(1, 1, 0.70758057)
+
+[node name="3DPlayer" type="CharacterBody3D" unique_id=479895160 node_paths=PackedStringArray("input_component", "movement_component", "camera", "interaction_component")]
 script = ExtResource("1_rpqav")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementComponent")
 camera = NodePath("PlayerCam")
+interaction_component = NodePath("InteractionComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2076507509]
 shape = SubResource("CapsuleShape3D_qbkls")
@@ -32,5 +38,19 @@ metadata/_custom_type_script = "uid://fetu5vdx164a"
 [node name="MovementComponent" type="Node" parent="." unique_id=520007101 node_paths=PackedStringArray("body", "relative_to")]
 script = ExtResource("3_dewec")
 body = NodePath("..")
-relative_to = NodePath("../PlayerCam")
+relative_to = NodePath("..")
 metadata/_custom_type_script = "uid://bdysibukkqc12"
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1462514707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.883508, 0, 0, -0.29479194)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=876467224]
+transform = Transform3D(0.9999926, 0, 0, 0, 0.9999926, 0, 0, 0, 0.99999946, 0, 0, -0.4747621)
+shape = SubResource("BoxShape3D_dewec")
+
+[node name="InteractionComponent" type="Node" parent="." unique_id=1504758946 node_paths=PackedStringArray("area3d", "ui_manager")]
+script = ExtResource("5_5ixxa")
+area3d = NodePath("../Area3D")
+ui_manager = NodePath("../3DExploreCanvasLayer")
+
+[node name="3DExploreCanvasLayer" parent="." unique_id=1618359617 instance=ExtResource("6_nn08x")]

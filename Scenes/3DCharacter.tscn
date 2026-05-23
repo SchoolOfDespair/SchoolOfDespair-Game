@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bor7r3etpb2xa"]
+
+[ext_resource type="Texture2D" uid="uid://dcoeactq138y2" path="res://Temporary/Test_Billboard.png" id="1_43yi8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mmyjl"]
+
+[node name="Character" type="StaticBody3D" unique_id=1080233289]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="CharacterHitbox" type="CollisionShape3D" parent="." unique_id=156331093]
+transform = Transform3D(-1, -4.5298742e-07, 0, 1.509958e-07, -3, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_mmyjl")
+
+[node name="CharacterSprite" type="Sprite3D" parent="." unique_id=206261437]
+transform = Transform3D(-1.3113417e-08, 0, 0.99999994, 0, 0.3, 0, -0.3, 0, -4.3711385e-08, 0, 0, 0)
+visibility_range_end = 100.0
+billboard = 2
+texture = ExtResource("1_43yi8")

@@ -26,7 +26,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_doctor/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_doctor/plugin.cfg", "res://addons/xogot_connect/plugin.cfg")
 
 [input]
 
@@ -74,6 +74,16 @@ camright={
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":1.0,"script":null)
 ]
 }
+
+[input_devices]
+
+virtual_controller/ios/enable_controller=false
+virtual_controller/ios/enable_left_thumbstick=true
+virtual_controller/ios/enable_right_thumbstick=true
+virtual_controller/ios/enable_button_a=true
+virtual_controller/ios/enable_button_b=true
+virtual_controller/ios/enable_button_x=true
+virtual_controller/ios/enable_button_y=true
 
 [physics]
 

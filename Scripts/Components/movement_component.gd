@@ -4,7 +4,7 @@ class_name MovementComponent extends Node
 
 ## [CharacterBody3D] to use
 @export var body: CharacterBody3D
-## [Camera3D] to use
+## [Camera3D] to use # THIS IS NOW THE CHARACTER DO NOT PUT THE FUCKING CAMERA HERE YOU BASTARD
 @export var relative_to: Node3D
 
 ## Speed value

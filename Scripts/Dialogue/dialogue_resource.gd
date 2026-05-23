@@ -8,7 +8,7 @@ class_name DialogueResource extends Resource
 ## Emotion used for sprite
 @export var emotion: String # TODO: change to enum?
 ## Voiceline used for audioclip
-@export var voiceline: String # TODO: change to audio file?
+@export var voiceline: String # TODO: change to audio file? yes
 
 
 
