@@ -9,6 +9,19 @@ enum DEVICE {
 }
 var _current_device: DEVICE = DEVICE.M_AND_KBOARD
 
+func is_nintendo_controller(device_id: int) -> bool:
+	var guid = Input.get_joy_guid(device_id)
+	
+	# Ensure the GUID string is long enough to parse safely
+	if guid.length() < 16:
+		return false
+		
+	# Extract the vendor ID portion from the standard SDL GUID structure
+	var vendor_id = guid.substr(8, 4).to_lower()
+	
+	# '057e' is Nintendo's official hardware vendor registry code
+	return vendor_id == "057e"
+
 
 const GAMEPAD_LOOK_MULTIPLIER: float = 20.0
 
@@ -17,6 +30,8 @@ const GAMEPAD_LOOK_MULTIPLIER: float = 20.0
 
 ## Mouse sensitivity
 @export var look_sens := 2.0
+
+@export var interaction_manager: InteractionManager
 
 
 var _wasd_input: Vector2
@@ -57,6 +72,16 @@ func _process(delta: float) -> void:
 		_look_input = mouse_input
 	elif _current_device == DEVICE.GAMEPAD:
 		_look_input = gamepad_input * GAMEPAD_LOOK_MULTIPLIER
+		
+	if _current_device == DEVICE.GAMEPAD:
+		if is_nintendo_controller(0):
+			if (Input.is_action_just_pressed("interact_nintendo")):
+				interaction_manager.interact()
+				
+				print("interacted, nintendo controller")
+	if (Input.is_action_just_pressed("interact")):
+		print("interacted, non-nintendo controller or keyboard")
+		interaction_manager.interact()
 
 
 func _unhandled_input(event: InputEvent) -> void:

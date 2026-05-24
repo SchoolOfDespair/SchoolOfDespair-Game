@@ -6,10 +6,13 @@
 [ext_resource type="Script" uid="uid://ck5shq0n77bkm" path="res://Scripts/Components/camera_component.gd" id="4_dewec"]
 [ext_resource type="Script" uid="uid://bwtpaj1f1rmi5" path="res://Scripts/Components/interaction_manager_component.gd" id="5_5ixxa"]
 [ext_resource type="PackedScene" uid="uid://ct3tawfubo8of" path="res://Scenes/3d_explore_canvas_layer.tscn" id="6_nn08x"]
+[ext_resource type="Theme" uid="uid://b4o0oyy4npy16" path="res://Themes/MenuTheme.tres" id="7_megsn"]
+[ext_resource type="Script" uid="uid://b1hhqjjsomdxp" path="res://Scripts/Dialogue/dialogue_label.gd" id="8_bhhdu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qbkls"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rpqav"]
+height = 2.7
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dewec"]
 size = Vector3(1, 1, 0.70758057)
@@ -28,29 +31,64 @@ shape = SubResource("CapsuleShape3D_qbkls")
 mesh = SubResource("CapsuleMesh_rpqav")
 
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=451546733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89500684, 0)
 script = ExtResource("4_dewec")
 metadata/_custom_type_script = "uid://ck5shq0n77bkm"
 
-[node name="InputComponent" type="Node" parent="." unique_id=1400698911]
+[node name="InputComponent" type="Node" parent="." unique_id=1400698911 node_paths=PackedStringArray("interaction_manager")]
 script = ExtResource("2_gntrk")
+interaction_manager = NodePath("../InteractionComponent")
 metadata/_custom_type_script = "uid://fetu5vdx164a"
 
-[node name="MovementComponent" type="Node" parent="." unique_id=520007101 node_paths=PackedStringArray("body", "relative_to")]
+[node name="MovementComponent" type="Node" parent="." unique_id=520007101 node_paths=PackedStringArray("body")]
 script = ExtResource("3_dewec")
 body = NodePath("..")
-relative_to = NodePath("..")
 metadata/_custom_type_script = "uid://bdysibukkqc12"
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1462514707]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.883508, 0, 0, -0.29479194)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.883508, 0, 0.89500684, -0.29479194)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=876467224]
 transform = Transform3D(0.9999926, 0, 0, 0, 0.9999926, 0, 0, 0, 0.99999946, 0, 0, -0.4747621)
 shape = SubResource("BoxShape3D_dewec")
 
-[node name="InteractionComponent" type="Node" parent="." unique_id=1504758946 node_paths=PackedStringArray("area3d", "ui_manager")]
+[node name="InteractionComponent" type="Node" parent="." unique_id=1504758946 node_paths=PackedStringArray("player", "area3d", "ui_manager", "dialog")]
 script = ExtResource("5_5ixxa")
+player = NodePath("..")
 area3d = NodePath("../Area3D")
 ui_manager = NodePath("../3DExploreCanvasLayer")
+dialog = NodePath("../ConversationLayer/BoxContainer/Panel/MyDialogueLabel")
 
-[node name="3DExploreCanvasLayer" parent="." unique_id=1618359617 instance=ExtResource("6_nn08x")]
+[node name="3DExploreCanvasLayer" parent="." unique_id=1618359617 node_paths=PackedStringArray("threed_explore_layer", "conversation_layer", "threed_player") instance=ExtResource("6_nn08x")]
+threed_explore_layer = NodePath(".")
+conversation_layer = NodePath("../ConversationLayer")
+threed_player = NodePath("..")
+
+[node name="ConversationLayer" type="CanvasLayer" parent="." unique_id=1260583831]
+follow_viewport_enabled = true
+
+[node name="BoxContainer" type="BoxContainer" parent="ConversationLayer" unique_id=803174338]
+anchors_preset = -1
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Panel" type="Panel" parent="ConversationLayer/BoxContainer" unique_id=975560803]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MyDialogueLabel" type="RichTextLabel" parent="ConversationLayer/BoxContainer/Panel" unique_id=1967389492]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 1154.0
+offset_bottom = 130.59998
+theme = ExtResource("7_megsn")
+bbcode_enabled = true
+text = "Look, [color=gold][b]there[/b][/color] are [i]words[/i]!"
+fit_content = true
+script = ExtResource("8_bhhdu")
+metadata/_custom_type_script = "uid://b1hhqjjsomdxp"

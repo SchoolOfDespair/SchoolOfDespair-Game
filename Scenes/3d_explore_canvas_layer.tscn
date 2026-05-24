@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://ct3tawfubo8of"]
 
-[ext_resource type="Texture2D" uid="uid://drad5cqdkgw2w" path="res://Textures/ReticleFocused.png" id="1_fekyw"]
+[ext_resource type="Texture2D" uid="uid://drad5cqdkgw2w" path="res://Textures/Reticles/ReticleFocused.png" id="1_fekyw"]
 [ext_resource type="Script" uid="uid://cbw3dc2saw8be" path="res://Scripts/UI/ui_state_handler.gd" id="1_ok2qx"]
 [ext_resource type="Theme" uid="uid://g31g1yyfwtmt" path="res://Themes/UITheme.tres" id="1_tuiqf"]
-[ext_resource type="Texture2D" uid="uid://5ptdqvda1oq0" path="res://Textures/ReticleUnfocused.png" id="3_v528r"]
+[ext_resource type="Script" uid="uid://cvkbgvh0ug2vw" path="res://Scripts/UI/reticle_spin.gd" id="3_gcdt6"]
+[ext_resource type="Texture2D" uid="uid://5ptdqvda1oq0" path="res://Textures/Reticles/ReticleUnfocused.png" id="3_v528r"]
 
 [node name="3DExploreCanvasLayer" type="CanvasLayer" unique_id=1618359617 node_paths=PackedStringArray("unfocused_reticle_container", "focused_reticle_container", "focused_name_container", "focused_name")]
 script = ExtResource("1_ok2qx")
@@ -13,19 +14,27 @@ focused_name_container = NodePath("FocusedNameContainer")
 focused_name = NodePath("FocusedNameContainer/NameDisplay/MainContainer/RichTextLabel")
 
 [node name="FocusedReticle" type="BoxContainer" parent="." unique_id=451756123]
-anchors_preset = -1
-anchor_left = 0.45
-anchor_top = 0.45
-anchor_right = 0.55
-anchor_bottom = 0.55
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(57.5, 35)
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="FocusedReticle" unique_id=119649825]
-layout_mode = 2
+[node name="Marker2D" type="Marker2D" parent="FocusedReticle" unique_id=416562202]
+script = ExtResource("3_gcdt6")
+
+[node name="TextureRect" type="TextureRect" parent="FocusedReticle/Marker2D" unique_id=119649825]
+offset_left = -62.600037
+offset_top = -62.600037
+offset_right = 62.600037
+offset_bottom = 62.600037
+pivot_offset = Vector2(62.6, 62.6)
 texture = ExtResource("1_fekyw")
-expand_mode = 2
+expand_mode = 1
 
 [node name="FocusedNameContainer" type="BoxContainer" parent="." unique_id=1864183068]
 anchors_preset = -1
@@ -64,16 +73,23 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="UnfocusedReticle" type="BoxContainer" parent="." unique_id=310900429]
-anchors_preset = -1
-anchor_left = 0.45
-anchor_top = 0.45
-anchor_right = 0.55
-anchor_bottom = 0.55
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="UnfocusedReticle" unique_id=1142168171]
-layout_mode = 2
+[node name="Marker2D" type="Marker2D" parent="UnfocusedReticle" unique_id=631873795]
+script = ExtResource("3_gcdt6")
+
+[node name="TextureRect" type="TextureRect" parent="UnfocusedReticle/Marker2D" unique_id=1142168171]
+offset_left = -62.600037
+offset_top = -62.600037
+offset_right = 62.600037
+offset_bottom = 62.600037
+pivot_offset = Vector2(62.6, 62.6)
 texture = ExtResource("3_v528r")
-expand_mode = 2
+expand_mode = 1

@@ -1,6 +1,11 @@
 extends Node
 class_name UIManager
 
+@export var threed_explore_layer: CanvasLayer
+@export var conversation_layer: CanvasLayer
+
+@export var threed_player: ThreeDPlayer
+
 @export var unfocused_reticle_container: BoxContainer
 @export var focused_reticle_container: BoxContainer
 @export var focused_name_container: BoxContainer
@@ -18,3 +23,17 @@ func focus(charname: String):
 	focused_name_container.visible = true
 	
 	focused_name.text = charname
+	
+func change_to_3d():
+	threed_explore_layer.visible = true
+	conversation_layer.visible = false
+	threed_player.unlock_movement()
+	
+func change_to_conversation():
+	threed_explore_layer.visible = false
+	conversation_layer.visible = true
+	threed_player.lock_movement()
+	
+func _ready():
+	change_to_3d()
+	

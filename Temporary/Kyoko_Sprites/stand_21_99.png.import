@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deef4wf0bgcy2"
-path="res://.godot/imported/Reticle2.png-1fe55d5cbbc1acfa61d2599a88c26e86.ctex"
+uid="uid://bqfk7mr5gu3ak"
+path="res://.godot/imported/stand_21_99.png-559cdb737728a4faf7654136d144ab90.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Reticle2.png"
-dest_files=["res://.godot/imported/Reticle2.png-1fe55d5cbbc1acfa61d2599a88c26e86.ctex"]
+source_file="res://Temporary/Kyoko_Sprites/stand_21_99.png"
+dest_files=["res://.godot/imported/stand_21_99.png-559cdb737728a4faf7654136d144ab90.ctex"]
 
 [params]
 
