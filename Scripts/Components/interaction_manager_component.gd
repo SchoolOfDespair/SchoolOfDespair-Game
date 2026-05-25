@@ -55,6 +55,7 @@ func interact():
 	
 	if (current_focused_object):
 		ui_manager.change_to_conversation()
+		ui_manager.conversation_change_name(current_focused_object.character_name)
 		in_conversation = true
 		if (current_focused_object.has_one_line):
 			dialog.display_text(current_focused_object.one_line)

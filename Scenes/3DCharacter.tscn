@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bor7r3etpb2xa"]
 
-[ext_resource type="Texture2D" uid="uid://dcoeactq138y2" path="res://Temporary/Chiaki_Sprites/Upset.png" id="1_43yi8"]
 [ext_resource type="Script" uid="uid://w16sprfiub47" path="res://Scripts/character.gd" id="1_ntecf"]
+[ext_resource type="Texture2D" uid="uid://dbhiay3ahlwns" path="res://Textures/Fallbacks/CharacterFallback.png" id="2_ntecf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mmyjl"]
 
@@ -19,4 +19,4 @@ shape = SubResource("BoxShape3D_mmyjl")
 transform = Transform3D(-1.3113417e-08, 0, 0.99999994, 0, 0.3, 0, -0.3, 0, -4.3711385e-08, 0, 0, 0)
 visibility_range_end = 100.0
 billboard = 2
-texture = ExtResource("1_43yi8")
+texture = ExtResource("2_ntecf")

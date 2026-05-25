@@ -12,6 +12,8 @@ class_name UIManager
 
 @export var focused_name: RichTextLabel
 
+@export var conversation_name: RichTextLabel
+
 func unfocus():
 	unfocused_reticle_container.visible = true
 	focused_reticle_container.visible = false
@@ -33,6 +35,9 @@ func change_to_conversation():
 	threed_explore_layer.visible = false
 	conversation_layer.visible = true
 	threed_player.lock_movement()
+	
+func conversation_change_name(char_name: String):
+	conversation_name.text = char_name
 	
 func _ready():
 	change_to_3d()

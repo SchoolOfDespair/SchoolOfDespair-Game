@@ -9,6 +9,7 @@ enum DEVICE {
 }
 var _current_device: DEVICE = DEVICE.M_AND_KBOARD
 
+## Very basic check for if a controller has the stupid Nintendo layout. Does not work with third-party Nintendo controllers. May be moved to a setting rather than check.
 func is_nintendo_controller(device_id: int) -> bool:
 	var guid = Input.get_joy_guid(device_id)
 	
@@ -20,7 +21,8 @@ func is_nintendo_controller(device_id: int) -> bool:
 	var vendor_id = guid.substr(8, 4).to_lower()
 	
 	# '057e' is Nintendo's official hardware vendor registry code
-	return vendor_id == "057e"
+	# it's fucking backwards in the returned guid do not fucking touch this it is right
+	return vendor_id == "7e05"
 
 
 const GAMEPAD_LOOK_MULTIPLIER: float = 20.0
@@ -79,9 +81,14 @@ func _process(delta: float) -> void:
 				interaction_manager.interact()
 				
 				print("interacted, nintendo controller")
-	if (Input.is_action_just_pressed("interact")):
-		print("interacted, non-nintendo controller or keyboard")
-		interaction_manager.interact()
+		elif (Input.is_action_just_pressed("interact")):
+			# Changed because if player was using nintendo controller, B could be pressed to same effect, and we don't want that.
+			print("interacted, non-nintendo controller")
+			interaction_manager.interact()
+	else:
+		if (Input.is_action_just_pressed("interact")):
+			print("interacted, keyboard")
+			interaction_manager.interact()
 
 
 func _unhandled_input(event: InputEvent) -> void:

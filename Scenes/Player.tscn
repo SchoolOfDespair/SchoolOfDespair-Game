@@ -17,6 +17,11 @@ height = 2.7
 [sub_resource type="BoxShape3D" id="BoxShape3D_dewec"]
 size = Vector3(1, 1, 0.70758057)
 
+[sub_resource type="Theme" id="Theme_bhhdu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_megsn"]
+bg_color = Color(0.6222297, 0.6285581, 0.24885263, 1)
+
 [node name="3DPlayer" type="CharacterBody3D" unique_id=479895160 node_paths=PackedStringArray("input_component", "movement_component", "camera", "interaction_component")]
 script = ExtResource("1_rpqav")
 input_component = NodePath("InputComponent")
@@ -59,10 +64,11 @@ area3d = NodePath("../Area3D")
 ui_manager = NodePath("../3DExploreCanvasLayer")
 dialog = NodePath("../ConversationLayer/BoxContainer/Panel/MyDialogueLabel")
 
-[node name="3DExploreCanvasLayer" parent="." unique_id=1618359617 node_paths=PackedStringArray("threed_explore_layer", "conversation_layer", "threed_player") instance=ExtResource("6_nn08x")]
+[node name="3DExploreCanvasLayer" parent="." unique_id=1618359617 node_paths=PackedStringArray("threed_explore_layer", "conversation_layer", "threed_player", "conversation_name") instance=ExtResource("6_nn08x")]
 threed_explore_layer = NodePath(".")
 conversation_layer = NodePath("../ConversationLayer")
 threed_player = NodePath("..")
+conversation_name = NodePath("../ConversationLayer/BoxContainer2/CharacterName/BoxContainer/CharName")
 
 [node name="ConversationLayer" type="CanvasLayer" parent="." unique_id=1260583831]
 follow_viewport_enabled = true
@@ -82,9 +88,9 @@ size_flags_horizontal = 3
 
 [node name="MyDialogueLabel" type="RichTextLabel" parent="ConversationLayer/BoxContainer/Panel" unique_id=1967389492]
 layout_mode = 0
-offset_left = 2.0
+offset_left = 6.0
 offset_top = 2.0
-offset_right = 1154.0
+offset_right = 1063.0
 offset_bottom = 130.59998
 theme = ExtResource("7_megsn")
 bbcode_enabled = true
@@ -92,3 +98,39 @@ text = "Look, [color=gold][b]there[/b][/color] are [i]words[/i]!"
 fit_content = true
 script = ExtResource("8_bhhdu")
 metadata/_custom_type_script = "uid://b1hhqjjsomdxp"
+
+[node name="Tooltip" type="TextureRect" parent="ConversationLayer/BoxContainer/Panel" unique_id=1761473176]
+layout_mode = 0
+offset_left = 1051.0
+offset_top = 31.599976
+offset_right = 1122.0
+offset_bottom = 102.599976
+
+[node name="BoxContainer2" type="BoxContainer" parent="ConversationLayer" unique_id=2033856496]
+anchors_preset = -1
+anchor_top = 0.716
+anchor_right = 0.2
+anchor_bottom = 0.8
+grow_vertical = 2
+alignment = 2
+
+[node name="CharacterName" type="Panel" parent="ConversationLayer/BoxContainer2" unique_id=72179038]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_bhhdu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_megsn")
+
+[node name="BoxContainer" type="BoxContainer" parent="ConversationLayer/BoxContainer2/CharacterName" unique_id=1836655166]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharName" type="RichTextLabel" parent="ConversationLayer/BoxContainer2/CharacterName/BoxContainer" unique_id=1741258229]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+theme = ExtResource("7_megsn")
+text = "Character Name"
+vertical_alignment = 1
