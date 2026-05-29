@@ -1,5 +1,5 @@
 ## Label which can display text one char at a time
-class_name DialogueLabel extends RichTextLabel
+class_name DialogueLabel extends AutoSizeRichTextLabel
 
 enum DISPLAY_STAGE {WAITING, DISPLAYING, DISPLAYED}
 

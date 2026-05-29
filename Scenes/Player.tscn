@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://ct3tawfubo8of" path="res://Scenes/3d_explore_canvas_layer.tscn" id="6_nn08x"]
 [ext_resource type="Theme" uid="uid://b4o0oyy4npy16" path="res://Themes/MenuTheme.tres" id="7_megsn"]
 [ext_resource type="Script" uid="uid://b1hhqjjsomdxp" path="res://Scripts/Dialogue/dialogue_label.gd" id="8_bhhdu"]
+[ext_resource type="Script" uid="uid://leehmvr1x5lu" path="res://addons/AutoSizeText/ui/AutoSizeRichTextLabel.gd" id="9_megsn"]
+[ext_resource type="Texture2D" uid="uid://be0nvor5psxfy" path="res://Textures/Control_Tips/A@4x.png" id="9_yoq75"]
+[ext_resource type="Script" uid="uid://dcmq7k38ei3hi" path="res://Scripts/UI/tooltip_fade_in_out.gd" id="10_ksbbd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qbkls"]
 
@@ -86,30 +89,47 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MyDialogueLabel" type="RichTextLabel" parent="ConversationLayer/BoxContainer/Panel" unique_id=1967389492]
+[node name="MyDialogueLabel" type="RichTextLabel" parent="ConversationLayer/BoxContainer/Panel" unique_id=990557764]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 2.0
 offset_right = 1063.0
 offset_bottom = 130.59998
 theme = ExtResource("7_megsn")
+theme_override_font_sizes/normal_font_size = 38
+theme_override_font_sizes/bold_font_size = 38
+theme_override_font_sizes/bold_italics_font_size = 38
+theme_override_font_sizes/italics_font_size = 38
+theme_override_font_sizes/mono_font_size = 38
 bbcode_enabled = true
 text = "Look, [color=gold][b]there[/b][/color] are [i]words[/i]!"
-fit_content = true
 script = ExtResource("8_bhhdu")
-metadata/_custom_type_script = "uid://b1hhqjjsomdxp"
+metadata/_custom_type_script = "uid://leehmvr1x5lu"
 
-[node name="Tooltip" type="TextureRect" parent="ConversationLayer/BoxContainer/Panel" unique_id=1761473176]
-layout_mode = 0
-offset_left = 1051.0
-offset_top = 31.599976
-offset_right = 1122.0
-offset_bottom = 102.599976
+[node name="BoxContainer" type="BoxContainer" parent="ConversationLayer/BoxContainer/Panel" unique_id=858088083]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_top = 0.2
+anchor_right = 0.98
+anchor_bottom = 0.8
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 2
+
+[node name="Tooltip" type="TextureRect" parent="ConversationLayer/BoxContainer/Panel/BoxContainer" unique_id=1761473176]
+layout_mode = 2
+texture = ExtResource("9_yoq75")
+expand_mode = 2
+script = ExtResource("10_ksbbd")
 
 [node name="BoxContainer2" type="BoxContainer" parent="ConversationLayer" unique_id=2033856496]
 anchors_preset = -1
-anchor_top = 0.716
-anchor_right = 0.2
+anchor_top = 0.73
+anchor_right = 0.25
 anchor_bottom = 0.8
 grow_vertical = 2
 alignment = 2
@@ -123,14 +143,22 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_megsn")
 [node name="BoxContainer" type="BoxContainer" parent="ConversationLayer/BoxContainer2/CharacterName" unique_id=1836655166]
 layout_mode = 1
 anchors_preset = -1
+anchor_left = 0.02
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CharName" type="RichTextLabel" parent="ConversationLayer/BoxContainer2/CharacterName/BoxContainer" unique_id=1741258229]
+[node name="CharName" type="RichTextLabel" parent="ConversationLayer/BoxContainer2/CharacterName/BoxContainer" unique_id=376975232]
 custom_minimum_size = Vector2(225, 0)
 layout_mode = 2
 theme = ExtResource("7_megsn")
+theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/bold_font_size = 28
+theme_override_font_sizes/bold_italics_font_size = 28
+theme_override_font_sizes/italics_font_size = 28
+theme_override_font_sizes/mono_font_size = 28
 text = "Character Name"
 vertical_alignment = 1
+script = ExtResource("9_megsn")
+metadata/_custom_type_script = "uid://leehmvr1x5lu"
