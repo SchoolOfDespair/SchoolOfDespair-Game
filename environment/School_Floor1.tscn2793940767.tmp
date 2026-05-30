@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://dxi3do7ey367y"]
+
+[ext_resource type="PackedScene" uid="uid://bor7r3etpb2xa" path="res://billboard_characters/3DCharacter.tscn" id="1_e87c5"]
+[ext_resource type="PackedScene" uid="uid://bqoonkhrg4wx1" path="res://player/Player.tscn" id="2_vjkhx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_okssu"]
+
+[sub_resource type="Sky" id="Sky_okssu"]
+sky_material = SubResource("ProceduralSkyMaterial_okssu")
+
+[sub_resource type="Environment" id="Environment_okssu"]
+background_mode = 2
+sky = SubResource("Sky_okssu")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_shu46"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ib3jx"]
+size = Vector2(20, 20)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_n466d"]
+
+[node name="SchoolFloor1" type="Node3D" unique_id=1759764683]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=401900790]
+environment = SubResource("Environment_okssu")
+
+[node name="3DPlayer" parent="." unique_id=479895160 instance=ExtResource("2_vjkhx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29619718, 0)
+
+[node name="Flor" type="StaticBody3D" parent="." unique_id=1743321022]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6282635, 0)
+physics_material_override = SubResource("PhysicsMaterial_shu46")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Flor" unique_id=1593598348]
+mesh = SubResource("PlaneMesh_ib3jx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Flor" unique_id=1474751699]
+shape = SubResource("WorldBoundaryShape3D_n466d")
+
+[node name="Characters" type="Node3D" parent="." unique_id=610902839]
+
+[node name="Kazuichi Soda" parent="Characters" unique_id=1080233289 instance=ExtResource("1_e87c5")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4.96426, -0.13436472, 4.96426)
+sprite_emotion = 7
+character = 1
+has_one_line = true
+one_line = "Woah, how'd I get [color=gold][b]here?[/b][/color]"
+
+[node name="Character" parent="Characters" unique_id=1497296272 instance=ExtResource("1_e87c5")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.460779, 0, 0)
+sprite_emotion = 8
+character = 2
+has_one_line = true
+one_line = "This is an [color=gold][b]odd place.[/b][/color]"
+
+[node name="Character2" parent="Characters" unique_id=1349751655 instance=ExtResource("1_e87c5")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.1379871, -0.09226346, 6.586584)
+has_one_line = true
+one_line = "W-where am I???"
+
+[node name="Character3" parent="Characters" unique_id=2003548689 instance=ExtResource("1_e87c5")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.745784, -0.09226346, 5.2971296)
+sprite_emotion = 5
+character = 2
+has_one_line = true
+one_line = "Uhm, [color=gold][b]what happened to me?![/b][/color]"

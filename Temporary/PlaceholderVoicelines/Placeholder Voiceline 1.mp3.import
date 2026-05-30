@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bk8ul0aruwe8o"
+path="res://.godot/imported/Placeholder Voiceline 1.mp3-5c26be4c8f6f4bc73f74fe1c1bdfe945.mp3str"
+
+[deps]
+
+source_file="res://Temporary/PlaceholderVoicelines/Placeholder Voiceline 1.mp3"
+dest_files=["res://.godot/imported/Placeholder Voiceline 1.mp3-5c26be4c8f6f4bc73f74fe1c1bdfe945.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

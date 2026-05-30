@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://ct3tawfubo8of"]
+
+[ext_resource type="Script" uid="uid://cbw3dc2saw8be" path="res://ui/hud/hud_state_handler.gd" id="1_vci3o"]
+[ext_resource type="Script" uid="uid://cvkbgvh0ug2vw" path="res://ui/hud/reticle/reticle_spin.gd" id="2_tdcwd"]
+[ext_resource type="Texture2D" uid="uid://drad5cqdkgw2w" path="res://ui/hud/reticle/textures/ReticleFocused.png" id="3_vwkow"]
+[ext_resource type="Theme" uid="uid://g31g1yyfwtmt" path="res://ui/UITheme.tres" id="4_xxs7w"]
+[ext_resource type="Texture2D" uid="uid://5ptdqvda1oq0" path="res://ui/hud/reticle/textures/ReticleUnfocused.png" id="5_fgqev"]
+
+[node name="HUDLayer" type="CanvasLayer" unique_id=1618359617 node_paths=PackedStringArray("unfocused_reticle_container", "focused_reticle_container", "focused_name_container", "focused_name")]
+script = ExtResource("1_vci3o")
+unfocused_reticle_container = NodePath("UnfocusedReticle")
+focused_reticle_container = NodePath("FocusedReticle")
+focused_name_container = NodePath("FocusedNameContainer")
+focused_name = NodePath("FocusedNameContainer/NameDisplay/MainContainer/RichTextLabel")
+
+[node name="FocusedReticle" type="BoxContainer" parent="." unique_id=451756123]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(57.5, 35)
+alignment = 1
+
+[node name="Marker2D" type="Marker2D" parent="FocusedReticle" unique_id=416562202]
+script = ExtResource("2_tdcwd")
+
+[node name="TextureRect" type="TextureRect" parent="FocusedReticle/Marker2D" unique_id=119649825]
+offset_left = -62.600037
+offset_top = -62.600037
+offset_right = 62.600037
+offset_bottom = 62.600037
+pivot_offset = Vector2(62.6, 62.6)
+texture = ExtResource("3_vwkow")
+expand_mode = 1
+
+[node name="FocusedNameContainer" type="BoxContainer" parent="." unique_id=1864183068]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.605
+anchor_right = 0.7
+anchor_bottom = 0.73200005
+offset_left = 0.23196411
+offset_top = -0.040008545
+offset_right = 0.52001953
+offset_bottom = 0.26394653
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="NameDisplay" type="Panel" parent="FocusedNameContainer" unique_id=1977809575]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MainContainer" type="BoxContainer" parent="FocusedNameContainer/NameDisplay" unique_id=1562305580]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 0.26394653
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="FocusedNameContainer/NameDisplay/MainContainer" unique_id=1260077058]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_xxs7w")
+text = "Chiaki Nanami"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UnfocusedReticle" type="BoxContainer" parent="." unique_id=310900429]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Marker2D" type="Marker2D" parent="UnfocusedReticle" unique_id=631873795]
+script = ExtResource("2_tdcwd")
+
+[node name="TextureRect" type="TextureRect" parent="UnfocusedReticle/Marker2D" unique_id=1142168171]
+offset_left = -62.600037
+offset_top = -62.600037
+offset_right = 62.600037
+offset_bottom = 62.600037
+pivot_offset = Vector2(62.6, 62.6)
+texture = ExtResource("5_fgqev")
+expand_mode = 1

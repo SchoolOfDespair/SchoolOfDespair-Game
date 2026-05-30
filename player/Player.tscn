@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://bqoonkhrg4wx1"]
+
+[ext_resource type="Script" uid="uid://bs6vnv7263l8u" path="res://player/player.gd" id="1_rpqav"]
+[ext_resource type="Script" uid="uid://fetu5vdx164a" path="res://player/components/input_component.gd" id="2_gntrk"]
+[ext_resource type="Script" uid="uid://bdysibukkqc12" path="res://player/components/movement_component.gd" id="3_dewec"]
+[ext_resource type="Script" uid="uid://ck5shq0n77bkm" path="res://player/components/camera_component.gd" id="4_dewec"]
+[ext_resource type="Script" uid="uid://bwtpaj1f1rmi5" path="res://player/components/interaction/interaction_component.gd" id="5_5ixxa"]
+[ext_resource type="Shape3D" uid="uid://7cukia1sw56j" path="res://player/components/interaction/interact_shape.tres" id="6_b32pr"]
+[ext_resource type="PackedScene" uid="uid://ct3tawfubo8of" path="res://ui/hud/hud_layer.tscn" id="6_nn08x"]
+[ext_resource type="Theme" uid="uid://b4o0oyy4npy16" path="res://ui/menu/MenuTheme.tres" id="7_megsn"]
+[ext_resource type="Script" uid="uid://b1hhqjjsomdxp" path="res://ui/character_speech/speech/dialogue_label.gd" id="8_bhhdu"]
+[ext_resource type="Script" uid="uid://leehmvr1x5lu" path="res://addons/AutoSizeText/ui/AutoSizeRichTextLabel.gd" id="9_megsn"]
+[ext_resource type="Texture2D" uid="uid://be0nvor5psxfy" path="res://ui/tooltip_textures/A@4x.png" id="9_yoq75"]
+[ext_resource type="Script" uid="uid://dcmq7k38ei3hi" path="res://ui/tooltip_fade_in_out.gd" id="10_ksbbd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qbkls"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rpqav"]
+height = 2.7
+
+[sub_resource type="Theme" id="Theme_bhhdu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_megsn"]
+bg_color = Color(0.6222297, 0.6285581, 0.24885263, 1)
+
+[node name="3DPlayer" type="CharacterBody3D" unique_id=479895160 node_paths=PackedStringArray("input_component", "movement_component", "camera", "interaction_component")]
+script = ExtResource("1_rpqav")
+input_component = NodePath("InputComponent")
+movement_component = NodePath("MovementComponent")
+camera = NodePath("PlayerCam")
+interaction_component = NodePath("InteractionComponent")
+
+[node name="PlayerCollider" type="CollisionShape3D" parent="." unique_id=2076507509]
+shape = SubResource("CapsuleShape3D_qbkls")
+
+[node name="PlayerMesh" type="MeshInstance3D" parent="." unique_id=740440706]
+mesh = SubResource("CapsuleMesh_rpqav")
+
+[node name="PlayerCam" type="Camera3D" parent="." unique_id=451546733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89500684, 0)
+script = ExtResource("4_dewec")
+rotate_parent = true
+
+[node name="InputComponent" type="Node" parent="." unique_id=1400698911 node_paths=PackedStringArray("interaction_manager")]
+script = ExtResource("2_gntrk")
+interaction_manager = NodePath("../InteractionComponent")
+
+[node name="MovementComponent" type="Node" parent="." unique_id=520007101 node_paths=PackedStringArray("body")]
+script = ExtResource("3_dewec")
+body = NodePath("..")
+
+[node name="InteractionComponent" type="Area3D" parent="." unique_id=1861685334 node_paths=PackedStringArray("player", "ui_manager", "dialog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.895, -0.69)
+script = ExtResource("5_5ixxa")
+player = NodePath("..")
+ui_manager = NodePath("../HUDLayer")
+dialog = NodePath("../ConversationLayer/SpeechContainer/SpeechPanel/MyDialogueLabel")
+metadata/_custom_type_script = "uid://bwtpaj1f1rmi5"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionComponent" unique_id=876467224]
+transform = Transform3D(0.9999926, 0, 0, 0, 0.9999926, 0, 0, 0, 0.99999946, 0, 0, -0.4747621)
+shape = ExtResource("6_b32pr")
+
+[node name="HUDLayer" parent="." unique_id=1618359617 node_paths=PackedStringArray("threed_explore_layer", "conversation_layer", "player", "conversation_name") instance=ExtResource("6_nn08x")]
+threed_explore_layer = NodePath(".")
+conversation_layer = NodePath("../ConversationLayer")
+player = NodePath("..")
+conversation_name = NodePath("../ConversationLayer/NameContainer/NamePanel/NameLabelContainer/NameLabel")
+
+[node name="ConversationLayer" type="CanvasLayer" parent="." unique_id=1260583831]
+follow_viewport_enabled = true
+
+[node name="SpeechContainer" type="BoxContainer" parent="ConversationLayer" unique_id=803174338]
+anchors_preset = -1
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="SpeechPanel" type="Panel" parent="ConversationLayer/SpeechContainer" unique_id=975560803]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MyDialogueLabel" type="RichTextLabel" parent="ConversationLayer/SpeechContainer/SpeechPanel" unique_id=990557764]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 2.0
+offset_right = 1063.0
+offset_bottom = 130.59998
+theme = ExtResource("7_megsn")
+theme_override_font_sizes/normal_font_size = 38
+theme_override_font_sizes/bold_font_size = 38
+theme_override_font_sizes/bold_italics_font_size = 38
+theme_override_font_sizes/italics_font_size = 38
+theme_override_font_sizes/mono_font_size = 38
+bbcode_enabled = true
+text = "Look, [color=gold][b]there[/b][/color] are [i]words[/i]!"
+script = ExtResource("8_bhhdu")
+metadata/_custom_type_script = "uid://leehmvr1x5lu"
+
+[node name="TooltipContainer" type="BoxContainer" parent="ConversationLayer/SpeechContainer/SpeechPanel" unique_id=858088083]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_top = 0.2
+anchor_right = 0.98
+anchor_bottom = 0.8
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 2
+
+[node name="Tooltip" type="TextureRect" parent="ConversationLayer/SpeechContainer/SpeechPanel/TooltipContainer" unique_id=1761473176]
+layout_mode = 2
+texture = ExtResource("9_yoq75")
+expand_mode = 2
+script = ExtResource("10_ksbbd")
+
+[node name="NameContainer" type="BoxContainer" parent="ConversationLayer" unique_id=2033856496]
+anchors_preset = -1
+anchor_top = 0.73
+anchor_right = 0.25
+anchor_bottom = 0.8
+grow_vertical = 2
+alignment = 2
+
+[node name="NamePanel" type="Panel" parent="ConversationLayer/NameContainer" unique_id=72179038]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_bhhdu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_megsn")
+
+[node name="NameLabelContainer" type="BoxContainer" parent="ConversationLayer/NameContainer/NamePanel" unique_id=1836655166]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NameLabel" type="RichTextLabel" parent="ConversationLayer/NameContainer/NamePanel/NameLabelContainer" unique_id=376975232]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+theme = ExtResource("7_megsn")
+theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/bold_font_size = 28
+theme_override_font_sizes/bold_italics_font_size = 28
+theme_override_font_sizes/italics_font_size = 28
+theme_override_font_sizes/mono_font_size = 28
+text = "Character Name"
+vertical_alignment = 1
+script = ExtResource("9_megsn")
+metadata/_custom_type_script = "uid://leehmvr1x5lu"
