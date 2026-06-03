@@ -26,7 +26,7 @@ var name_db = {
 
 @export var sprite_emotion: SPRITE_STATE
 @export var character: CHARACTER
-@export var character_name: String
+var character_name: String
 @export var has_one_line: bool
 @export var one_line: String # just for testing, probably less than ideal to use
 @export var conversation_id: int # also might be changed later :)
@@ -52,7 +52,3 @@ func _ready() -> void:
 	else:
 		character_name = "FALLBACK: ERROR"
 		push_warning("No sprite for %s:%s" % [char_name, emotion_name])
-
-
-func interact(player: Player3D) -> void:
-	pass

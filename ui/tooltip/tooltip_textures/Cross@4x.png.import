@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hiufy38oy4v2"
-path="res://.godot/imported/ZR@4x.png-fb2f7c8ec180932340627aba6b5f7446.ctex"
+uid="uid://c1nq2c7pbu46s"
+path="res://.godot/imported/Cross@4x.png-1164d0c02b4b692aa97be26c43d0bb75.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/tooltip_textures/ZR@4x.png"
-dest_files=["res://.godot/imported/ZR@4x.png-fb2f7c8ec180932340627aba6b5f7446.ctex"]
+source_file="res://ui/tooltip/tooltip_textures/Cross@4x.png"
+dest_files=["res://.godot/imported/Cross@4x.png-1164d0c02b4b692aa97be26c43d0bb75.ctex"]
 
 [params]
 

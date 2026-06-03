@@ -1,14 +1,16 @@
 ## Component to handle moving [CharacterBody3D]
 class_name MovementComponent extends Node
 
-## [CharacterBody3D] to use
+
+## [CharacterBody3D] to move
 @export var body: CharacterBody3D
 
-## Speed value
+
+## How fast?
 @export var speed := 400.0
 
 
-## Call to move [member body] based on [param input] and [member speed] relative to [member camera]
+## Call to move [member body] based on [param input] at [member speed]
 func move(delta: float, input: Vector2) -> void:
 	var left_direction = Vector3(body.basis.x.x, 0, body.basis.x.z).normalized() 
 	var forward_direction = Vector3(body.basis.z.x, 0, body.basis.z.z).normalized()

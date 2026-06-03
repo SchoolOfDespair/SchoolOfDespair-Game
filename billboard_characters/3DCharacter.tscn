@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://w16sprfiub47" path="res://billboard_characters/character.gd" id="1_ntecf"]
 [ext_resource type="Shape3D" uid="uid://cvmcdifpapm41" path="res://billboard_characters/collider_shape.tres" id="2_4qjwo"]
 [ext_resource type="Texture2D" uid="uid://dbhiay3ahlwns" path="res://billboard_characters/CharacterFallback.png" id="2_ntecf"]
+[ext_resource type="Script" uid="uid://bnlbftp2bqhd" path="res://billboard_characters/components/interactable_component.gd" id="4_adjkc"]
 
 [node name="Character" type="StaticBody3D" unique_id=1080233289 node_paths=PackedStringArray("character_sprite")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
@@ -19,3 +20,10 @@ transform = Transform3D(-1.3113417e-08, 0, 0.99999994, 0, 0.3, 0, -0.3, 0, -4.37
 visibility_range_end = 100.0
 billboard = 2
 texture = ExtResource("2_ntecf")
+
+[node name="InteractableComponent" type="Area3D" parent="." unique_id=1205510588]
+script = ExtResource("4_adjkc")
+metadata/_custom_type_script = "uid://kboc10vq6kk7"
+
+[node name="InteractCollider" type="CollisionShape3D" parent="InteractableComponent" unique_id=2048729452]
+shape = ExtResource("2_4qjwo")

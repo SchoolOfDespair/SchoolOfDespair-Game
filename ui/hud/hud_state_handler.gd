@@ -1,43 +1,46 @@
-class_name UIManager extends Node
+class_name HUD extends Control
 
-@export var threed_explore_layer: CanvasLayer
-@export var conversation_layer: CanvasLayer
 
-@export var player: Player3D
+enum HUD_STATE { THREE_D, DIALOGUE }
 
-@export var unfocused_reticle_container: BoxContainer
-@export var focused_reticle_container: BoxContainer
-@export var focused_name_container: BoxContainer
+var state: HUD_STATE = HUD_STATE.THREE_D
 
-@export var focused_name: RichTextLabel
+@onready var three_d_layer: CanvasLayer = %"3DLayer"
+@onready var reticle: Reticle = %Reticle
+@onready var focus_panel: Panel = %FocusTextPanel
+@onready var focus_label: RichTextLabel = %FocusTextLabel
 
-@export var conversation_name: RichTextLabel
+
+@onready var dialogue_layer: CanvasLayer = %DialogueLayer
+@onready var dialogue_name: AutoSizeRichTextLabel = %NameLabel
+@onready var dialogue_text: DialogueLabel = %DialogueLabel
+@onready var dialogue_tooltip: TextureRect = %Tooltip
+
 
 func unfocus():
-	unfocused_reticle_container.visible = true
-	focused_reticle_container.visible = false
-	focused_name_container.visible = false
+	reticle.unfocus()
+	
+	focus_panel.visible = false
 
-func focus(charname: String):
-	unfocused_reticle_container.visible = false
-	focused_reticle_container.visible = true
-	focused_name_container.visible = true
+func focus(obj_name: String):
+	reticle.focus()
 	
-	focused_name.text = charname
-	
+	focus_label.text = obj_name
+	focus_panel.visible = true
+
+
 func change_to_3d():
-	threed_explore_layer.visible = true
-	conversation_layer.visible = false
-	player.movement_locked = false
-	
-func change_to_conversation():
-	threed_explore_layer.visible = false
-	conversation_layer.visible = true
-	player.movement_locked = true
-	
-func conversation_change_name(char_name: String):
-	conversation_name.text = char_name
-	
+	state = HUD_STATE.THREE_D
+	three_d_layer.visible = true
+	dialogue_layer.visible = false
+
+func change_to_dialogue(char_name: String):
+	state = HUD_STATE.THREE_D
+	dialogue_layer.visible = true
+	three_d_layer.visible = false
+	dialogue_name.text = char_name
+
+
 func _ready():
+	unfocus()
 	change_to_3d()
-	

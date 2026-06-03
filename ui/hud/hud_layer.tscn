@@ -1,95 +1,148 @@
 [gd_scene format=3 uid="uid://ct3tawfubo8of"]
 
 [ext_resource type="Script" uid="uid://cbw3dc2saw8be" path="res://ui/hud/hud_state_handler.gd" id="1_vci3o"]
-[ext_resource type="Script" uid="uid://cvkbgvh0ug2vw" path="res://ui/hud/reticle/reticle_spin.gd" id="2_tdcwd"]
-[ext_resource type="Texture2D" uid="uid://drad5cqdkgw2w" path="res://ui/hud/reticle/textures/ReticleFocused.png" id="3_vwkow"]
+[ext_resource type="PackedScene" uid="uid://b5y4bybiykqua" path="res://ui/hud/reticle/Reticle.tscn" id="2_xxs7w"]
 [ext_resource type="Theme" uid="uid://g31g1yyfwtmt" path="res://ui/UITheme.tres" id="4_xxs7w"]
-[ext_resource type="Texture2D" uid="uid://5ptdqvda1oq0" path="res://ui/hud/reticle/textures/ReticleUnfocused.png" id="5_fgqev"]
+[ext_resource type="Theme" uid="uid://b4o0oyy4npy16" path="res://ui/menu/MenuTheme.tres" id="6_chvec"]
+[ext_resource type="Script" uid="uid://b1hhqjjsomdxp" path="res://ui/character_speech/speech/dialogue_label.gd" id="7_bqr2h"]
+[ext_resource type="Texture2D" uid="uid://be0nvor5psxfy" path="res://ui/tooltip/tooltip_textures/A@4x.png" id="8_njeui"]
+[ext_resource type="Script" uid="uid://dcmq7k38ei3hi" path="res://ui/tooltip/tooltip_fade_in_out.gd" id="9_ihwlc"]
+[ext_resource type="Script" uid="uid://leehmvr1x5lu" path="res://addons/AutoSizeText/ui/AutoSizeRichTextLabel.gd" id="10_4xva5"]
 
-[node name="HUDLayer" type="CanvasLayer" unique_id=1618359617 node_paths=PackedStringArray("unfocused_reticle_container", "focused_reticle_container", "focused_name_container", "focused_name")]
-script = ExtResource("1_vci3o")
-unfocused_reticle_container = NodePath("UnfocusedReticle")
-focused_reticle_container = NodePath("FocusedReticle")
-focused_name_container = NodePath("FocusedNameContainer")
-focused_name = NodePath("FocusedNameContainer/NameDisplay/MainContainer/RichTextLabel")
+[sub_resource type="Theme" id="Theme_k2csk"]
 
-[node name="FocusedReticle" type="BoxContainer" parent="." unique_id=451756123]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ct1j2"]
+bg_color = Color(0.6222297, 0.6285581, 0.24885263, 1)
+
+[node name="HUD" type="Control" unique_id=1070495737]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(57.5, 35)
-alignment = 1
+script = ExtResource("1_vci3o")
 
-[node name="Marker2D" type="Marker2D" parent="FocusedReticle" unique_id=416562202]
-script = ExtResource("2_tdcwd")
+[node name="3DLayer" type="CanvasLayer" parent="." unique_id=73910095]
+unique_name_in_owner = true
 
-[node name="TextureRect" type="TextureRect" parent="FocusedReticle/Marker2D" unique_id=119649825]
-offset_left = -62.600037
-offset_top = -62.600037
-offset_right = 62.600037
-offset_bottom = 62.600037
-pivot_offset = Vector2(62.6, 62.6)
-texture = ExtResource("3_vwkow")
-expand_mode = 1
+[node name="Reticle" parent="3DLayer" unique_id=148258086 instance=ExtResource("2_xxs7w")]
+unique_name_in_owner = true
 
-[node name="FocusedNameContainer" type="BoxContainer" parent="." unique_id=1864183068]
+[node name="FocusTextBoxContainer" type="BoxContainer" parent="3DLayer" unique_id=635543642]
 anchors_preset = -1
 anchor_left = 0.3
-anchor_top = 0.605
+anchor_top = 0.6
 anchor_right = 0.7
-anchor_bottom = 0.73200005
-offset_left = 0.23196411
-offset_top = -0.040008545
-offset_right = 0.52001953
-offset_bottom = 0.26394653
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
+anchor_bottom = 0.7
 
-[node name="NameDisplay" type="Panel" parent="FocusedNameContainer" unique_id=1977809575]
+[node name="FocusTextPanel" type="Panel" parent="3DLayer/FocusTextBoxContainer" unique_id=1977809575]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MainContainer" type="BoxContainer" parent="FocusedNameContainer/NameDisplay" unique_id=1562305580]
+[node name="FocusTextLabel" type="RichTextLabel" parent="3DLayer/FocusTextBoxContainer/FocusTextPanel" unique_id=1260077058]
+unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 0.26394653
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="FocusedNameContainer/NameDisplay/MainContainer" unique_id=1260077058]
-layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("4_xxs7w")
 text = "Chiaki Nanami"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UnfocusedReticle" type="BoxContainer" parent="." unique_id=310900429]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+[node name="DialogueLayer" type="CanvasLayer" parent="." unique_id=1343971218]
+unique_name_in_owner = true
+
+[node name="BoxContainer" type="BoxContainer" parent="DialogueLayer" unique_id=1478127801]
+anchors_preset = -1
+anchor_top = 0.667
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 0
+vertical = true
+
+[node name="NameControl" type="Control" parent="DialogueLayer/BoxContainer" unique_id=1979380904]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="NamePanel" type="Panel" parent="DialogueLayer/BoxContainer/NameControl" unique_id=1333641774]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.35
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+size_flags_horizontal = 0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.35
+theme = SubResource("Theme_k2csk")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ct1j2")
 
-[node name="Marker2D" type="Marker2D" parent="UnfocusedReticle" unique_id=631873795]
-script = ExtResource("2_tdcwd")
+[node name="NameLabel" type="RichTextLabel" parent="DialogueLayer/BoxContainer/NameControl/NamePanel" unique_id=1552400228]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_chvec")
+theme_override_font_sizes/normal_font_size = 38
+theme_override_font_sizes/bold_font_size = 38
+theme_override_font_sizes/bold_italics_font_size = 38
+theme_override_font_sizes/italics_font_size = 38
+theme_override_font_sizes/mono_font_size = 38
+text = "Character Name"
+vertical_alignment = 1
+script = ExtResource("10_4xva5")
+metadata/_custom_type_script = "uid://leehmvr1x5lu"
 
-[node name="TextureRect" type="TextureRect" parent="UnfocusedReticle/Marker2D" unique_id=1142168171]
-offset_left = -62.600037
-offset_top = -62.600037
-offset_right = 62.600037
-offset_bottom = 62.600037
-pivot_offset = Vector2(62.6, 62.6)
-texture = ExtResource("5_fgqev")
+[node name="SpeechPanel" type="Panel" parent="DialogueLayer/BoxContainer" unique_id=1840354025]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SpeechBoxContainer" type="BoxContainer" parent="DialogueLayer/BoxContainer/SpeechPanel" unique_id=1710865332]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogueLabel" type="RichTextLabel" parent="DialogueLayer/BoxContainer/SpeechPanel/SpeechBoxContainer" unique_id=2040466308]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_chvec")
+theme_override_font_sizes/normal_font_size = 38
+theme_override_font_sizes/bold_font_size = 38
+theme_override_font_sizes/bold_italics_font_size = 38
+theme_override_font_sizes/italics_font_size = 38
+theme_override_font_sizes/mono_font_size = 38
+bbcode_enabled = true
+text = "Look, [color=gold][b]there[/b][/color] are [i]words[/i]!"
+script = ExtResource("7_bqr2h")
+metadata/_custom_type_script = "uid://leehmvr1x5lu"
+
+[node name="TooltipCentreContainer" type="CenterContainer" parent="DialogueLayer/BoxContainer/SpeechPanel/SpeechBoxContainer" unique_id=435407419]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="Tooltip" type="TextureRect" parent="DialogueLayer/BoxContainer/SpeechPanel/SpeechBoxContainer/TooltipCentreContainer" unique_id=2047822302]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("8_njeui")
 expand_mode = 1
+script = ExtResource("9_ihwlc")

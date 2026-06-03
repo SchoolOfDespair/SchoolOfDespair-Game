@@ -16,8 +16,6 @@ const GAMEPAD_LOOK_MULTIPLIER: float = 20.0
 ## Mouse sensitivity
 @export var look_sens := 2.0
 
-@export var interaction_manager: InteractionComponent
-
 
 var _movement_input: Vector2
 ## Public forward backward left right vector from keyboard input
@@ -45,7 +43,7 @@ var interact_input: bool:
 	set(value):
 		pass
 
-
+## Raw mouse input
 var mouse_input: Vector2
 var _mouse_input_buffer: Vector2
 var _mouse_input_got_this_frame := false
@@ -55,6 +53,7 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
+## Collect input from devices
 func gather() -> void:
 	_update_mouse_input()
 	
@@ -64,7 +63,7 @@ func gather() -> void:
 
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	# switch current device between mouse and keyboard or gamepad depending
 	# on input
 	if event is InputEventKey or event is InputEventMouseButton:
@@ -76,7 +75,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			_current_device = DEVICE.GAMEPAD
 	
 	
-	if event is not InputEventMouseMotion \
+	if not event is InputEventMouseMotion \
 			or Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 		return
 	

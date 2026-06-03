@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpru2iwo3ax16"
-path="res://.godot/imported/R2@4x.png-8e4b5b5b42055bd46ecbf71cd1a8f5b7.ctex"
+uid="uid://bw5x564pknwi8"
+path="res://.godot/imported/B@4x.png-ec31dd677462bdc09e042530a16fd13d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/tooltip_textures/R2@4x.png"
-dest_files=["res://.godot/imported/R2@4x.png-8e4b5b5b42055bd46ecbf71cd1a8f5b7.ctex"]
+source_file="res://ui/tooltip/tooltip_textures/B@4x.png"
+dest_files=["res://.godot/imported/B@4x.png-ec31dd677462bdc09e042530a16fd13d.ctex"]
 
 [params]
 

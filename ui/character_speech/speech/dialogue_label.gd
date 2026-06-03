@@ -1,6 +1,8 @@
 ## Label which can display text one char at a time
 class_name DialogueLabel extends AutoSizeRichTextLabel
 
+signal display_finished
+
 enum DISPLAY_STAGE {WAITING, DISPLAYING, DISPLAYED}
 
 ## DialogueResource to use - no more
@@ -47,13 +49,15 @@ func _display_next_char():
 	
 	if _current_index == len(text_being_displayed):
 		_display_stage = DISPLAY_STAGE.DISPLAYED
+		display_finished.emit()
 
 ## Start process of displaying text
 func begin_displaying_text():
 	if _display_stage != DISPLAY_STAGE.DISPLAYING:
 		_timer.start(text_speed)
 		_display_stage = DISPLAY_STAGE.DISPLAYING
-		
+
+
 func display_text(text1: String):
 	if (_display_stage == DISPLAY_STAGE.DISPLAYED):
 		_current_index = 0
