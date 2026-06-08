@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bqoonkhrg4wx1"]
+
+[ext_resource type="Script" uid="uid://bs6vnv7263l8u" path="res://player/player.gd" id="1_rpqav"]
+[ext_resource type="Script" uid="uid://fetu5vdx164a" path="res://player/components/input_component.gd" id="2_gntrk"]
+[ext_resource type="Script" uid="uid://bdysibukkqc12" path="res://player/components/movement_component.gd" id="3_dewec"]
+[ext_resource type="Script" uid="uid://ck5shq0n77bkm" path="res://player/components/camera_component.gd" id="4_dewec"]
+[ext_resource type="Script" uid="uid://bwtpaj1f1rmi5" path="res://library/components/interaction_component.gd" id="5_5ixxa"]
+[ext_resource type="Shape3D" uid="uid://7cukia1sw56j" path="res://player/components/interact_shape.tres" id="6_b32pr"]
+[ext_resource type="PackedScene" uid="uid://ct3tawfubo8of" path="res://ui/hud/hud_layer.tscn" id="6_nn08x"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qbkls"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rpqav"]
+height = 2.7
+
+[node name="3DPlayer" type="CharacterBody3D" unique_id=479895160]
+script = ExtResource("1_rpqav")
+
+[node name="PlayerCollider" type="CollisionShape3D" parent="." unique_id=2076507509]
+shape = SubResource("CapsuleShape3D_qbkls")
+
+[node name="PlayerMesh" type="MeshInstance3D" parent="." unique_id=740440706]
+mesh = SubResource("CapsuleMesh_rpqav")
+
+[node name="PlayerCam" type="Camera3D" parent="." unique_id=451546733]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89500684, 0)
+script = ExtResource("4_dewec")
+rotate_parent_3d = true
+
+[node name="InputComponent" type="Node" parent="." unique_id=1400698911]
+unique_name_in_owner = true
+script = ExtResource("2_gntrk")
+
+[node name="MovementComponent" type="Node" parent="." unique_id=520007101 node_paths=PackedStringArray("body")]
+unique_name_in_owner = true
+script = ExtResource("3_dewec")
+body = NodePath("..")
+
+[node name="InteractionComponent" type="Area3D" parent="." unique_id=1861685334]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.895, -0.69)
+script = ExtResource("5_5ixxa")
+metadata/_custom_type_script = "uid://bwtpaj1f1rmi5"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionComponent" unique_id=876467224]
+transform = Transform3D(0.9999926, 0, 0, 0, 0.9999926, 0, 0, 0, 0.99999946, 0, 0, -0.4747621)
+shape = ExtResource("6_b32pr")
+
+[node name="HUD" parent="." unique_id=1618359617 instance=ExtResource("6_nn08x")]
+unique_name_in_owner = true

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dh7107a4laroa"]
+
+[ext_resource type="FontFile" uid="uid://1010cd6o8qhc" path="res://ui/fonts/DMSans-VariableFont_opsz,wght.ttf" id="1_8o6ns"]
+[ext_resource type="Theme" uid="uid://b4o0oyy4npy16" path="res://ui/menu/MenuTheme.tres" id="2_fwg63"]
+[ext_resource type="Script" uid="uid://b4rqfhwydrnyr" path="res://ui/menu/play_button.gd" id="3_5113n"]
+
+[sub_resource type="FontVariation" id="FontVariation_ax32a"]
+base_font = ExtResource("1_8o6ns")
+variation_opentype = {
+1869640570: 9,
+2003265652: 800
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_quvj1"]
+font = SubResource("FontVariation_ax32a")
+font_size = 50
+
+[node name="TitleScreen" type="Node2D" unique_id=1081183374]
+
+[node name="Label" type="Label" parent="." unique_id=1402136194]
+offset_left = 286.0
+offset_top = 55.0
+offset_right = 877.0
+offset_bottom = 169.0
+text = "School of Despair"
+label_settings = SubResource("LabelSettings_quvj1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=863690126]
+offset_left = 411.0
+offset_top = 276.0
+offset_right = 738.0
+offset_bottom = 429.0
+theme = ExtResource("2_fwg63")
+text = "Play"
+script = ExtResource("3_5113n")
+
+[connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
