@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dxi3do7ey367y"]
 
 [ext_resource type="PackedScene" uid="uid://bor7r3etpb2xa" path="res://billboard_characters/3DCharacter.tscn" id="1_e87c5"]
+[ext_resource type="PackedScene" uid="uid://hc0lo2ue2nid" path="res://ui/controls/mobile_controls.tscn" id="1_vjkhx"]
 [ext_resource type="PackedScene" uid="uid://bqoonkhrg4wx1" path="res://player/Player.tscn" id="2_vjkhx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_okssu"]
@@ -20,6 +21,8 @@ size = Vector2(20, 20)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_n466d"]
 
 [node name="SchoolFloor1" type="Node3D" unique_id=1759764683]
+
+[node name="MobileControls" parent="." unique_id=196201327 instance=ExtResource("1_vjkhx")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=401900790]
 environment = SubResource("Environment_okssu")

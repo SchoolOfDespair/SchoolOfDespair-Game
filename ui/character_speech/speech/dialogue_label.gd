@@ -35,16 +35,7 @@ func _process(delta):
 
 
 func _display_next_char():
-	if (text_being_displayed)[_current_index]:
-		var to_add = text_being_displayed[_current_index]
-		if to_add == "[":
-			# Skip over the rich text tags
-			var tagEndIndex = text_being_displayed.find("]", _current_index)
-			if tagEndIndex != -1:
-				to_add =  text_being_displayed.substr(_current_index, (tagEndIndex - _current_index) + 1)
-				_current_index = tagEndIndex
-	
-		text += to_add
+	visible_characters = _current_index
 	_current_index += 1
 	
 	if _current_index == len(text_being_displayed):
@@ -53,9 +44,12 @@ func _display_next_char():
 
 ## Start process of displaying text
 func begin_displaying_text():
+	visible_characters = 0
+	text = text_being_displayed
 	if _display_stage != DISPLAY_STAGE.DISPLAYING:
 		_timer.start(text_speed)
 		_display_stage = DISPLAY_STAGE.DISPLAYING
+	
 
 
 func display_text(text1: String):
@@ -70,3 +64,8 @@ func display_text(text1: String):
 		_timer.timeout.connect(_display_next_char)
 	
 		begin_displaying_text()
+	#else:
+	#	_display_stage = DISPLAY_STAGE.DISPLAYED
+	#	display_finished.emit()
+	#	visible_characters = len(text_being_displayed)
+	# do this later, essentialy skip button

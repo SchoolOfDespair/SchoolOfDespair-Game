@@ -12,7 +12,7 @@ config_version=5
 
 config/name="School of Despair"
 run/main_scene="uid://dh7107a4laroa"
-config/features=PackedStringArray("4.6", "C#", "Mobile")
+config/features=PackedStringArray("4.7", "C#", "Mobile")
 config/icon="res://icon.svg"
 
 [dotnet]
