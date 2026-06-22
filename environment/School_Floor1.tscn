@@ -23,6 +23,7 @@ size = Vector2(20, 20)
 [node name="SchoolFloor1" type="Node3D" unique_id=1759764683]
 
 [node name="MobileControls" parent="." unique_id=196201327 instance=ExtResource("1_vjkhx")]
+visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=401900790]
 environment = SubResource("Environment_okssu")
