@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dbhiay3ahlwns"
 path.s3tc="res://.godot/imported/CharacterFallback.png-cb425955d50b11296882be20da30e62b.s3tc.ctex"
+path.etc2="res://.godot/imported/CharacterFallback.png-cb425955d50b11296882be20da30e62b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://billboard_characters/CharacterFallback.png"
-dest_files=["res://.godot/imported/CharacterFallback.png-cb425955d50b11296882be20da30e62b.s3tc.ctex"]
+dest_files=["res://.godot/imported/CharacterFallback.png-cb425955d50b11296882be20da30e62b.s3tc.ctex", "res://.godot/imported/CharacterFallback.png-cb425955d50b11296882be20da30e62b.etc2.ctex"]
 
 [params]
 
