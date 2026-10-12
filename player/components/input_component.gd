@@ -9,12 +9,11 @@ enum DEVICE {
 }
 var _current_device: DEVICE = DEVICE.M_AND_KBOARD
 
-const GAMEPAD_LOOK_MULTIPLIER: float = 20.0
+## Get gamepad look input to around parity speed with mouse
+const GAMEPAD_LOOK_MULTIPLIER: float = 25.0
 
 ## Detecting controller deadzone
 @export var deadzone := 0.05
-## Mouse sensitivity
-@export var look_sens := 2.0
 
 
 var _movement_input: Vector2
@@ -79,7 +78,7 @@ func _input(event: InputEvent) -> void:
 			or Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 		return
 	
-	_mouse_input_buffer += event.relative * look_sens
+	_mouse_input_buffer += event.relative
 	_mouse_input_got_this_frame = true
 
 
